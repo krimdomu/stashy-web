@@ -1,8 +1,8 @@
+% title 'Search';
 % layout 'default';
-% title 'Dashboard';
 
 <div id="recent_servers">
-   <h1>Recently added Servers</h1>
+   <h1>Search Result</h1>
    <ul>
       <% while(my $data = $servers->next) { %>
       <li id="list_<%= $data->id %>" class="list_item" server_id="<%= $data->id %>">

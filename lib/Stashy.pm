@@ -69,6 +69,7 @@ sub startup {
 
   # Normal route to controller
   $r->route('/')->to('dashboard#index', active_li => "li_dashboard");
+  $r->route('/search/:servername')->to('dashboard#search', active_li => "li_dashboard");
 
   $r->route('/server/:serverid')->to('server#index', active_li => "li_server");
 

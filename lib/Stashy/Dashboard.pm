@@ -10,4 +10,13 @@ sub index {
    $self->render(servers => $servers);
 }
 
+sub search {
+   my $self = shift;
+
+   my $search_name = "%" . $self->param("servername") . "%";
+   my $servers = DB::Model::System->all( DB::Model::System->hostname % $search_name )->order("hostname")->asc();
+
+   $self->render(servers => $servers);
+}
+
 1;

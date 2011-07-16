@@ -19,7 +19,11 @@
       </div>
 
       <div id="header">
-         <img src="/images/logo_header.png" />
+         <img src="/images/logo_header.png" style="float: left;" />
+         <div id="search">
+            <input type="text" name="search" value="Find a server" id="txt_search" />
+         </div>
+         <div class="clearfix"></div>
       </div>
 
       <div id="page" style="">
@@ -31,6 +35,28 @@
    </body>
    <script type="text/javascript" charset="utf-8">
       $("#<%= $active_li %>").addClass("active");
+      $("#txt_search").bind("focus", function() {
+               if($("#txt_search")[0].value == "Find a server") {
+                  $("#txt_search")[0].value = "";
+               }
+            });
+      $("#txt_search").bind("blur", function() {
+               if($("#txt_search")[0].value == "") {
+                  $("#txt_search")[0].value = "Find a server";
+               }
+            });
+
+      $("#txt_search").bind("keypress", function(ev) {
+               if(ev.keyCode == 13) {
+                  // es wurde enter gedrueckt
+                  location.href="/search/" + $("#txt_search")[0].value;
+
+                  //$.get("/search/" + $("#txt_search")[0].value, function(data) {
+                  //      $("").html(data);
+                  //   });
+               }
+            });
+
    </script>
 </html>
 

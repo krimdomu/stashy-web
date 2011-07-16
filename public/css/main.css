@@ -286,4 +286,17 @@ body {
 }
 
 
+#header #search {
+
+   margin-left: 400px;
+   margin-top: 20px;
+
+}
+
+#header #search input {
+   padding: 5px;
+   width : 250px;
+   font-size: 14px;
+}
+
 
