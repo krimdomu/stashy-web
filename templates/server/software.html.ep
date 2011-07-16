@@ -16,7 +16,6 @@
    <ul>
       <li href="/server/<%= $server->id %>" class="li_task">Server Overview<br /><span class="small">Detailed overview of your servers hardware</span></li>
       <li href="/server/software/<%= $server->id %>" class="active li_task">Software<br /><span class="small">Overview of all installed software</span></li>
-      <li href="/server/deploy/<%= $server->id %>" class="li_task">Deploy<br /><span class="small">Install a new operating system</span></li>
    </ul>
 </div>
 

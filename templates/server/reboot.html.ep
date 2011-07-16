@@ -18,7 +18,6 @@
          </ul>
       </li>
       <li href="/server/software/<%= $server->id %>" class="li_task">Software<br /><span class="small">Overview of all installed software</span></li>
-      <li href="/server/deploy/<%= $server->id %>" class="li_task">Deploy<br /><span class="small">Install a new operating system</span></li>
    </ul>
 </div>
 
