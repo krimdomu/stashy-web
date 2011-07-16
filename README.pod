@@ -1,0 +1,36 @@
+=pod
+
+=head1 Stashy - an inventory and management tool based on for (R)?ex
+
+Stashy is in a very early development stage. Comments and Suggestions are welcome :)
+
+=head1 Installation
+
+You need (R)?ex, Mojolicious, DM4P and a MySQL Database.
+
+Install (R)?ex from  here L<http://rexify.org/get/>. 
+
+Install Stashy-cli from here L<https://github.com/krimdomu/stashy-cli>.
+
+Install Mojolicious via CPAN (see here: L<http://mojolicio.us>).
+
+Install DM4P and DM4P/MySQL from L<https://github.com/krimdomu/dm4p> and L<https://github.com/krimdomu/dm4p-adapter-mysql>.
+
+Clone this repository and edit the file I<lib/Stashy.pm>
+
+ git clone git://github.com/krimdomu/stashy-web.git
+
+Edit the file I<lib/Stashy.pm>
+
+ #################################
+ # DATABASE ACCESS
+ my $server   = "localhost";
+ my $db       = "stashy";
+ my $username = "stashy";
+ my $password = "stashy";
+ #################################
+
+Start the Test-Server:
+
+ morbo script/stashy
+

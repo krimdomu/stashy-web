@@ -1,6 +1,15 @@
 package Stashy;
 use Mojo::Base 'Mojolicious';
 
+#################################
+# DATABASE ACCESS
+my $server   = "localhost";
+my $db       = "stashy";
+my $username = "stashy";
+my $password = "stashy";
+#################################
+
+
 use DM4P;
 use DM4P::Connection::Server::MySQL;
 use DM4P::DM;
@@ -12,7 +21,8 @@ use DB::Model::Dimm;
 use DB::Model::NetworkDevice;
 use DB::Model::NetworkDeviceConfiguration;
 
-DM4P::setup(default => "MySQL://localhost/stashy?username=stashy&password=stashy");
+
+DM4P::setup(default => "MySQL://$server/$db?username=$username&password=$password");
 my $db;
 
 eval {
