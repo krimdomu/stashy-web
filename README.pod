@@ -28,7 +28,16 @@ Edit the file I<lib/Stashy.pm>
  my $db       = "stashy";
  my $username = "stashy";
  my $password = "stashy";
+    
+ # SERVER ACCESS
+ user "root";
+ # password "";
+ # pass_auth;
+ #
+ # public_key "/path/to/pub.key";
+ # private_key "/path/to/private.key";
  #################################
+
 
 Start the Test-Server:
 
