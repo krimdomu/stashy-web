@@ -1,0 +1,43 @@
+% layout 'default';
+% title 'Dashboard';
+
+<div id="recent_servers">
+   <h1>Recently added Servers</h1>
+   <ul>
+      <% while(my $data = $servers->next) { %>
+      <li id="list_<%= $data->id %>" class="list_item" server_id="<%= $data->id %>"><%= $data->hostname %><br /><span class="small">10.211.55.26<br /><%= $data->os %> <%= $data->osrelease %></span></li>
+      <% } %>
+   </ul>
+</div>
+
+<div id="server_details">
+   <h1>Server 1</h1>
+   <h2 class="h2-system">System</h2>
+      <ul>
+         <li class="mainboard">HP ProLiant DL360 G6</li>
+         <li class="cpu">
+         </li>
+         <li class="ram">6x 4096 MB DDR3</li>
+      </ul>
+   <h2 class="h2-network">Network</h2>
+      <ul>
+         <li>eth0: <a href="#">10.211.55.26</a></li>
+         <li>eth1: <a href="#">not configured</a></li>
+      </ul>
+
+   <a style="display: block; text-align: right; margin-right: 15px;" href="#">More Information &raquo;</a>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+   $(".list_item").each(function(idx, itm) {
+            $(itm).bind("click", function() {
+                  $stashy.get_system_info(itm.getAttribute("server_id"), itm);
+               });
+            $(itm).bind("mouseover", function() {
+                 $(itm).addClass("hover"); 
+               });
+            $(itm).bind("mouseout", function() {
+                 $(itm).removeClass("hover"); 
+               });
+         });
+</script>

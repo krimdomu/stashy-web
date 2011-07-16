@@ -1,0 +1,257 @@
+* {
+
+   margin: 0;
+   padding: 0;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+
+   background-color: #2a2928;
+   background-image: url(../images/bg.png);
+   background-position: bottom;
+   background-repeat: repeat-x;
+
+}
+
+#nav {
+
+   background-image: url(../images/bg.png);
+   font-size: 15px;
+   border-bottom: 2px solid #fff;
+}
+
+#nav ul {
+   margin-left: 35px;
+}
+
+#nav ul li {
+   list-style: none;
+   float: left;
+   padding-bottom: 8px;
+   padding-top: 8px;
+   margin-right: 25px;
+}
+
+#nav ul li a,
+#nav ul li a:visited,
+#nav ul li a:active,
+#nav ul li a:link {
+   color: #fff;
+   text-decoration: none;
+}
+
+#nav ul li a:hover {
+   text-decoration: underline;
+}
+
+#nav ul li.active {
+   border-top: 3px solid #ff0;
+   padding-top: 5px;
+}
+
+
+.clearfix {
+   clear: both;
+}
+
+#page {
+
+}
+
+#header {
+   padding-top: 30px;
+   padding-bottom: 30px;
+   padding-left: 35px;
+   border-bottom: 2px solid #fff;
+}
+
+#server_tasks,
+#recent_servers {
+   background-color: #363636;
+
+   -webkit-box-shadow: -3px 0px 7px #000;
+   -moz-box-shadow:    -3px 0px 7px #000;
+   box-shadow:         -3px 0px 7px #000;
+
+   min-height: 400px;
+   -min-height: 400px;
+
+   width: 400px;
+   margin-top: 15px;
+   margin-left: 35px;
+
+   float: left;
+}
+
+#server_tasks h1,
+#recent_servers h1 {
+
+   color: #fff;
+   font-size: 18px;
+   font-weight: normal;
+   padding: 15px;
+
+}
+
+#server_tasks ul li,
+#recent_servers ul li {
+
+   list-style: none;
+   color: #fff;
+   font-size: 14px;
+   padding: 15px;
+   border-bottom: 1px dotted #666;
+
+}
+
+#server_tasks ul li.active,
+#recent_servers ul li.active {
+
+   background-color: #095068;
+
+}
+
+#server_tasks ul li.hover,
+#recent_servers ul li.hover {
+
+   background-color: #015068;
+
+}
+
+#server_overview,
+#server_details {
+
+   background-color: #fff;
+
+   -webkit-box-shadow: 3px 0px 7px #000;
+   -moz-box-shadow:    3px 0px 7px #000;
+   box-shadow:         3px 0px 7px #000;
+
+   min-height: 420px;
+   -min-height: 420px;
+
+   margin-top: 35px;
+   margin-left: 435px;
+   width: 400px;
+
+   border: 6px solid #095068;
+
+}
+
+#server_overview h1,
+#server_details h1 {
+   font-size: 18px;
+   margin: 10px;
+   padding: 5px;
+   padding-right: 15px;
+   text-align: right;
+   border-bottom: 1px solid #000;
+}
+
+
+#server_overview h2,
+#server_details h2 {
+   font-size: 16px;
+   margin-left: 15px;
+   margin-bottom: 5px;
+}
+
+.h2-system {
+   background-image: url(../images/icons/h2-system.png);
+   background-repeat: no-repeat;
+   padding-left: 40px;
+   padding-top: 7px;
+   padding-bottom: 7px;
+}
+
+.h2-network {
+   background-image: url(../images/icons/h2-network.png);
+   background-repeat: no-repeat;
+   padding-left: 40px;
+   padding-top: 7px;
+   padding-bottom: 7px;
+}
+
+#server_overview ul,
+#server_details ul {
+   margin-left: 56px;
+   margin-bottom: 15px;
+}
+
+#server_overview ul li,
+#server_details ul li {
+   list-style: none;
+}
+
+#server_overview a,
+#server_overview a:link,
+#server_overview a:visited,
+#server_overview a:active,
+#server_details a,
+#server_details a:link,
+#server_details a:visited,
+#server_details a:active {
+   color: #095068;
+   text-decoration: none;
+}
+
+
+#server_details a:hover {
+   text-decoration: underline;
+}
+
+
+.small {
+
+   font-size: 12px;
+
+}
+
+
+#server_overview {
+     
+   -webkit-box-shadow: -3px 0px 7px #000;
+   -moz-box-shadow:    -3px 0px 7px #000;
+   box-shadow:         -3px 0px 7px #000;
+
+   min-height: 420px;
+   -min-height: 420px;
+
+   margin-top: 35px;
+   margin-left: 35px;
+   width: 600px;
+
+   border: 6px solid #095068;
+
+   float: left;
+
+}
+
+#server_tasks {
+
+   -webkit-box-shadow: 3px 0px 7px #000;
+   -moz-box-shadow:    3px 0px 7px #000;
+   box-shadow:         3px 0px 7px #000;
+
+   min-height: 390px;
+   -min-height: 390px;
+
+   width: 300px;
+   margin-top: 50px;
+   margin-left: 0px;
+
+   color: #fff;
+}
+
+#server_tasks h1 {
+
+   text-align: right;
+
+}
+
+#server_details {
+   visibility: hidden;
+}
+
+

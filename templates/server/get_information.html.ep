@@ -1,0 +1,25 @@
+<h1><%= $server->hostname %>.<%= $server->domainname %></h1>
+<h2 class="h2-system">System</h2>
+   <ul>
+      <li class="mainboard"><%= $base_board->manufacturer %> <%= $base_board->product_name %></li>
+      <% while(my $cpu = $cpus->next) { %>
+      <li class="cpu"><%= $cpu->family %> <%= $cpu->speed %> MHz</li>
+      <% } %>
+      <% while(my $dimm = $dimms->next) { %>
+      <li class="ram"><%= $dimm->size %> MB <%= $dimm->type %></li>
+      <% } %>
+   </ul>
+<h2 class="h2-network">Network</h2>
+   <ul>
+      <% while(my $eth = $eths->next) { %>
+      <% my $net_conf = $eth->NetworkDeviceConfigurations; %>
+      <li><%= $eth->dev %>: 
+         <% while(my $nc = $net_conf->next) { %>
+         <%= $nc->ip %>&nbsp;
+         <% } %>
+      </li>
+      <% } %>
+   </ul>
+
+<a style="display: block; text-align: right; margin-right: 15px;" href="#">More Information &raquo;</a>
+
