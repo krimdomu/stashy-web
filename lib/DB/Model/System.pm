@@ -27,6 +27,7 @@ __PACKAGE__->has_n('Baseboards' => 'DB::Model::Baseboard', "systems_id");
 __PACKAGE__->has_n('Cpus' => 'DB::Model::Cpu', "systems_id");
 __PACKAGE__->has_n('Dimms' => 'DB::Model::Dimm', "systems_id");
 __PACKAGE__->has_n('NetworkDevices' => 'DB::Model::NetworkDevice', "systems_id");
+__PACKAGE__->has_n('Software' => 'DB::Model::Software', "systems_id");
 
 
 1;

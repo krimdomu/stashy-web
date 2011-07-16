@@ -20,13 +20,13 @@ use DB::Model::Cpu;
 use DB::Model::Dimm;
 use DB::Model::NetworkDevice;
 use DB::Model::NetworkDeviceConfiguration;
+use DB::Model::Software;
 
 
 DM4P::setup(default => "MySQL://$server/$db?username=$username&password=$password");
-my $db;
 
 eval {
-   $db = DM4P::get_connection("default");
+   my $db = DM4P::get_connection("default");
    $db->connect;
 
    DB::Model::System->set_data_source($db);
@@ -35,6 +35,7 @@ eval {
    DB::Model::Dimm->set_data_source($db);
    DB::Model::NetworkDevice->set_data_source($db);
    DB::Model::NetworkDeviceConfiguration->set_data_source($db);
+   DB::Model::Software->set_data_source($db);
 };
 
 if($@) {
@@ -53,9 +54,13 @@ sub startup {
   my $r = $self->routes;
 
   # Normal route to controller
-  $r->route('/')->to('dashboard#index');
+  $r->route('/')->to('dashboard#index', active_li => "li_dashboard");
+
+  $r->route('/server/:serverid')->to('server#index', active_li => "li_server");
 
   $r->route('/server/get_information/:serverid')->to('server#get_information');
+  $r->route('/server/software/:serverid')->to('server#software', active_li => "li_server");
+
 }
 
 1;

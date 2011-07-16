@@ -1,0 +1,53 @@
+% layout 'default';
+% title 'Server Overview';
+
+<div id="server_overview">
+   <h1><%= $server->hostname %>.<%= $server->domainname %></h1>
+   <h2 class="h2-system">System</h2>
+      <ul>
+         <li class="mainboard"><%= $base_board->manufacturer %> <%= $base_board->product_name %></li>
+         <% while(my $cpu = $cpus->next) { %>
+         <li class="cpu"><%= $cpu->family %> <%= $cpu->speed %> MHz</li>
+         <% } %>
+         <% while(my $dimm = $dimms->next) { %>
+         <li class="ram"><%= $dimm->size %> MB <%= $dimm->type %></li>
+         <% } %>
+      </ul>
+   <h2 class="h2-network">Network</h2>
+      <ul>
+         <% while(my $eth = $eths->next) { %>
+         <% my $net_conf = $eth->NetworkDeviceConfigurations; %>
+         <li><%= $eth->dev %>: 
+            <% while(my $nc = $net_conf->next) { %>
+            <%= $nc->ip %>&nbsp;
+            <% } %>
+         </li>
+         <% } %>
+      </ul>
+
+
+</div>
+
+<div id="server_tasks">
+   <h1>Tasks</h1>
+   <ul>
+      <li href="/server/<%= $server->id %>" class="active li_task">Server Overview<br /><span class="small">Detailed overview of your servers hardware</span></li>
+      <li href="/server/software/<%= $server->id %>" class="li_task">Software<br /><span class="small">Overview of all installed software</span></li>
+      <li href="/server/deploy/<%= $server->id %>" class="li_task">Deploy<br /><span class="small">Install a new operating system</span></li>
+   </ul>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+   $(".li_task").each(function(idx, itm) {
+            $(itm).bind("click", function() {
+                  location.href=itm.getAttribute("href");
+               });
+            $(itm).bind("mouseover", function() {
+                 $(itm).addClass("hover"); 
+               });
+            $(itm).bind("mouseout", function() {
+                 $(itm).removeClass("hover"); 
+               });
+         });  
+</script>
+

@@ -19,4 +19,32 @@ sub get_information {
                   cpus => $cpus);
 }
 
+sub index {
+   my $self = shift;
+
+   my $server = DB::Model::System->all( DB::Model::System->id == $self->param("serverid") )->next;
+   my $base_board = $server->Baseboards->next;
+   my $cpus = $server->Cpus;
+   my $dimms = $server->Dimms;
+   my $eths  = $server->NetworkDevices;
+
+   $self->render(server => $server, 
+                  base_board => $base_board,
+                  dimms => $dimms,
+                  eths  => $eths,
+                  cpus => $cpus);
+
+}
+
+sub software {
+   my $self = shift;
+
+   my $server    = DB::Model::System->all( DB::Model::System->id == $self->param("serverid") )->next;
+   my $software  = $server->Software->order("name")->asc();
+
+   $self->render(server => $server, 
+                  software => $software);
+
+}
+
 1;

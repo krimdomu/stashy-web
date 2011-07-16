@@ -12,14 +12,14 @@
    <body>
       <div id="nav">
          <ul>
-            <li class="active"><a href="#">Dashboard</a></li>
-            <li><a href="#">Server</a></li>
+            <li id="li_dashboard"><a href="/">Dashboard</a></li>
+            <li id="li_server"><a href="/server">Server</a></li>
          </ul>
          <div class="clearfix"></div>
       </div>
 
       <div id="header">
-         <img src="images/logo_header.png" />
+         <img src="/images/logo_header.png" />
       </div>
 
       <div id="page" style="">
@@ -29,5 +29,8 @@
       </div>
 
    </body>
+   <script type="text/javascript" charset="utf-8">
+      $("#<%= $active_li %>").addClass("active");
+   </script>
 </html>
 

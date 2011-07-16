@@ -74,8 +74,8 @@ body {
    -moz-box-shadow:    -3px 0px 7px #000;
    box-shadow:         -3px 0px 7px #000;
 
-   min-height: 400px;
-   -min-height: 400px;
+   height: 400px;
+   height: 400px;
 
    width: 400px;
    margin-top: 15px;
@@ -128,14 +128,16 @@ body {
    -moz-box-shadow:    3px 0px 7px #000;
    box-shadow:         3px 0px 7px #000;
 
-   min-height: 420px;
-   -min-height: 420px;
+   height: 420px;
+   height: 420px;
 
    margin-top: 35px;
    margin-left: 435px;
    width: 400px;
 
    border: 6px solid #095068;
+
+   overflow: auto;
 
 }
 
@@ -215,8 +217,8 @@ body {
    -moz-box-shadow:    -3px 0px 7px #000;
    box-shadow:         -3px 0px 7px #000;
 
-   min-height: 420px;
-   -min-height: 420px;
+   height: 420px;
+   height: 420px;
 
    margin-top: 35px;
    margin-left: 35px;
@@ -234,8 +236,8 @@ body {
    -moz-box-shadow:    3px 0px 7px #000;
    box-shadow:         3px 0px 7px #000;
 
-   min-height: 390px;
-   -min-height: 390px;
+   height: 390px;
+   height: 390px;
 
    width: 300px;
    margin-top: 50px;

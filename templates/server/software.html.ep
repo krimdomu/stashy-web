@@ -1,0 +1,36 @@
+% layout 'default';
+% title 'Installed Software Packages';
+
+<div id="server_overview">
+   <h1><%= $server->hostname %>.<%= $server->domainname %></h1>
+   <h2 class="h2-software">Software</h2>
+      <ul>
+         <% while(my $pkg = $software->next) { %>
+         <li><%= $pkg->name %> (<%= $pkg->version %>)</li>
+         <% } %>
+      </ul>
+</div>
+
+<div id="server_tasks">
+   <h1>Tasks</h1>
+   <ul>
+      <li href="/server/<%= $server->id %>" class="li_task">Server Overview<br /><span class="small">Detailed overview of your servers hardware</span></li>
+      <li href="/server/software/<%= $server->id %>" class="active li_task">Software<br /><span class="small">Overview of all installed software</span></li>
+      <li href="/server/deploy/<%= $server->id %>" class="li_task">Deploy<br /><span class="small">Install a new operating system</span></li>
+   </ul>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+   $(".li_task").each(function(idx, itm) {
+            $(itm).bind("click", function() {
+                  location.href=itm.getAttribute("href");
+               });
+            $(itm).bind("mouseover", function() {
+                 $(itm).addClass("hover"); 
+               });
+            $(itm).bind("mouseout", function() {
+                 $(itm).removeClass("hover"); 
+               });
+         });  
+</script>
+
