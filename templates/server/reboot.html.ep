@@ -1,31 +1,9 @@
 % layout 'default';
-% title 'Server Overview';
+% title 'Installed Software Packages';
 
 <div id="server_overview">
    <h1><%= $server->hostname %>.<%= $server->domainname %></h1>
-   <h2 class="h2-system">System</h2>
-      <ul>
-         <li class="mainboard"><%= $base_board->manufacturer %> <%= $base_board->product_name %></li>
-         <% while(my $cpu = $cpus->next) { %>
-         <li class="cpu"><%= $cpu->family %> <%= $cpu->speed %> MHz</li>
-         <% } %>
-         <% while(my $dimm = $dimms->next) { %>
-         <li class="ram"><%= $dimm->size %> MB <%= $dimm->type %></li>
-         <% } %>
-      </ul>
-   <h2 class="h2-network">Network</h2>
-      <ul>
-         <% while(my $eth = $eths->next) { %>
-         <% my $net_conf = $eth->NetworkDeviceConfigurations; %>
-         <li><%= $eth->dev %>: 
-            <% while(my $nc = $net_conf->next) { %>
-            <%= $nc->ip %>&nbsp;
-            <% } %>
-         </li>
-         <% } %>
-      </ul>
-
-
+   <h2>Server is rebooting</h2>
 </div>
 
 <div id="server_tasks">
@@ -43,6 +21,8 @@
       <li href="/server/deploy/<%= $server->id %>" class="li_task">Deploy<br /><span class="small">Install a new operating system</span></li>
    </ul>
 </div>
+
+
 
 <script type="text/javascript" charset="utf-8">
    $(".li_task").each(function(idx, itm) {

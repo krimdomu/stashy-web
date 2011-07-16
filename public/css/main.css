@@ -256,4 +256,34 @@ body {
    visibility: hidden;
 }
 
+#server_tasks ul.simple,
+#recent_servers ul.simple {
+   margin-top: 10px;
+}
+
+
+#server_tasks ul.simple li a,
+#server_tasks ul.simple li a:link,
+#server_tasks ul.simple li a:active,
+#server_tasks ul.simple li a:visited {
+   color: #fff;
+   text-decoration: none;
+}
+
+#server_tasks ul.simple li a:hover {
+   text-decoration: underline;
+}
+
+#server_tasks ul.simple li,
+#recent_servers ul.simple li {
+
+   list-style: none;
+   color: #fff;
+   font-size: 12px;
+   padding: 0px;
+   border: 0px;
+   padding-left: 15px;
+}
+
+
 

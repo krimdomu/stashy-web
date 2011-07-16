@@ -2,6 +2,7 @@ package Stashy::Server;
 use Mojo::Base 'Mojolicious::Controller';
 
 use Data::Dumper;
+use Rex::Task;
 
 sub get_information {
    my $self = shift;
@@ -45,6 +46,22 @@ sub software {
    $self->render(server => $server, 
                   software => $software);
 
+}
+
+sub deploy {
+   my $self = shift;
+
+   my $server = DB::Model::System->all( DB::Model::System->id == $self->param("serverid") )->next;
+}
+
+sub reboot {
+   my $self = shift;
+
+   my $server = DB::Model::System->all( DB::Model::System->id == $self->param("serverid") )->next;
+
+   Rex::Task->run("Stashy:Server:Commands:reboot", $server->hostname . "." . $server->domainname);
+
+   $self->render(server => $server);
 }
 
 1;

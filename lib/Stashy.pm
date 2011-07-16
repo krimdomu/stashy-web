@@ -1,12 +1,26 @@
 package Stashy;
 use Mojo::Base 'Mojolicious';
 
+use Rex;
+use Rex::Config;
+use Rex::Commands;
+use Rex::Stashy::Server::Commands;
+
+
 #################################
 # DATABASE ACCESS
 my $server   = "localhost";
 my $db       = "stashy";
 my $username = "stashy";
 my $password = "stashy";
+
+# SERVER ACCESS
+user "root";
+# password "";
+# pass_auth;
+#
+# public_key "/path/to/pub.key";
+# private_key "/path/to/private.key";
 #################################
 
 
@@ -60,6 +74,7 @@ sub startup {
 
   $r->route('/server/get_information/:serverid')->to('server#get_information');
   $r->route('/server/software/:serverid')->to('server#software', active_li => "li_server");
+  $r->route('/server/reboot/:serverid')->to('server#reboot', active_li => "li_server");
 
 }
 
