@@ -178,6 +178,22 @@ body {
    padding-bottom: 7px;
 }
 
+.h2-memory {
+   background-image: url(../images/icons/h2-ram.png);
+   background-repeat: no-repeat;
+   padding-left: 40px;
+   padding-top: 7px;
+   padding-bottom: 7px;
+}
+
+.h2-hdd {
+   background-image: url(../images/icons/h2-hdd.png);
+   background-repeat: no-repeat;
+   padding-left: 40px;
+   padding-top: 7px;
+   padding-bottom: 7px;
+}
+
 #server_overview ul,
 #server_details ul {
    margin-left: 56px;

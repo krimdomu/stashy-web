@@ -35,6 +35,8 @@ use DB::Model::Dimm;
 use DB::Model::NetworkDevice;
 use DB::Model::NetworkDeviceConfiguration;
 use DB::Model::Software;
+use DB::Model::MemoryArray;
+use DB::Model::Storage;
 
 
 DM4P::setup(default => "MySQL://$server/$db?username=$username&password=$password");
@@ -50,6 +52,8 @@ eval {
    DB::Model::NetworkDevice->set_data_source($db);
    DB::Model::NetworkDeviceConfiguration->set_data_source($db);
    DB::Model::Software->set_data_source($db);
+   DB::Model::MemoryArray->set_data_source($db);
+   DB::Model::Storage->set_data_source($db);
 };
 
 if($@) {

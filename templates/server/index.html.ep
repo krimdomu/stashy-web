@@ -9,17 +9,65 @@
          <% while(my $cpu = $cpus->next) { %>
          <li class="cpu"><%= $cpu->family %> <%= $cpu->speed %> MHz</li>
          <% } %>
+      </ul>
+
+   <h2 class="h2-memory">Memory</h2>
+      <ul>
+         <li>
+            <% my $mem_arrays = $server->MemoryArrays; %>
+            <b>Memory Arrays</b>
+            <table border="0" style="margin-left: 15px;">
+               <% while(my $mem_arr = $mem_arrays->next) { %>
+               <tr>
+                  <td width="80" class="bold">Slots</td>
+                  <td>: <%= $mem_arr->slots %></td>
+               </tr>
+               <tr>
+                  <td class="bold">Maximum</td>
+                  <td>: <%= $mem_arr->maximum %> GB</td>
+               </tr>
+               <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+               </tr>
+               <% } %>
+            </table>
+         </li>
          <% while(my $dimm = $dimms->next) { %>
-         <li class="ram"><%= $dimm->size %> MB <%= $dimm->type %></li>
+         <li class="ram"><%= $dimm->size %> MB <%= $dimm->type %> (<%= $dimm->locator %>)</li>
          <% } %>
       </ul>
+
+   <h2 class="h2-hdd">Harddrives</h2>
+      <ul>
+         <% my $storages = $server->Storages; %>
+         <% while(my $st = $storages->next) { %>
+         <li>
+            <table border="0" style="border-bottom: 1px dotted #c3c3c3; width: 100%;">
+               <tr>
+                  <td class="bold" width="80">Device</td>
+                  <td>: <%= $st->dev %>, (<%= $st->bus %>)</td>
+               </tr>
+               <tr>
+                  <td class="bold">Size</td>
+                  <td>: <%= sprintf("%i", $st->size / 1024 / 1024 / 1024) %> GB, (<%= $st->bus %>)</td>
+               </tr>
+               <tr>
+                  <td class="bold">Product</td>
+                  <td>: <%= $st->vendor %>, <%= $st->product %></td>
+               </tr>
+            </table>
+         </li>
+         <% } %>
+      </ul>
+
    <h2 class="h2-network">Network</h2>
       <ul>
          <% while(my $eth = $eths->next) { %>
          <% next if($eth->product eq "Computer"); %>
          <% my $net_conf = $eth->NetworkDeviceConfigurations; %>
          <li>
-            <table border="0">
+            <table border="0" style="border-bottom: 1px dotted #c3c3c3; width: 100%;">
                <tr>
                   <td class="bold">Device</td>
                   <td><%= $eth->dev %></td>

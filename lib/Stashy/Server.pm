@@ -59,7 +59,7 @@ sub reboot {
 
    my $server = DB::Model::System->all( DB::Model::System->id == $self->param("serverid") )->next;
 
-   Rex::Task->run("Stashy:Server:Commands:reboot", $server->hostname . "." . $server->domainname);
+#   Rex::Task->run("Stashy:Server:Commands:reboot", $server->hostname . "." . $server->domainname);
 
    $self->render(server => $server);
 }
