@@ -16,11 +16,27 @@
    <h2 class="h2-network">Network</h2>
       <ul>
          <% while(my $eth = $eths->next) { %>
+         <% next if($eth->product eq "Computer"); %>
          <% my $net_conf = $eth->NetworkDeviceConfigurations; %>
-         <li><%= $eth->dev %>: 
-            <% while(my $nc = $net_conf->next) { %>
-            <%= $nc->ip %>&nbsp;
-            <% } %>
+         <li>
+            <table border="0">
+               <tr>
+                  <td class="bold">Device</td>
+                  <td><%= $eth->dev %></td>
+               </tr>
+               <tr>
+                  <td class="bold">Vendor</td>
+                  <td><%= $eth->vendor %> (<%= $eth->product %>)</td>
+               </tr>
+               <tr>
+                  <td class="bold">Configuration</td>
+                  <td>
+                     <% while(my $nc = $net_conf->next) { %>
+                        <%= $nc->ip %>&nbsp;
+                     <% } %>
+                  </td>
+               </tr>
+            </table>
          </li>
          <% } %>
       </ul>
