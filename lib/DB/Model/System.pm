@@ -30,6 +30,7 @@ __PACKAGE__->has_n('NetworkDevices' => 'DB::Model::NetworkDevice', "systems_id")
 __PACKAGE__->has_n('Software' => 'DB::Model::Software', "systems_id");
 __PACKAGE__->has_n('MemoryArrays' => 'DB::Model::MemoryArray', "systems_id");
 __PACKAGE__->has_n('Storages' => 'DB::Model::Storage', "systems_id");
+__PACKAGE__->has_n('RaidControllers' => 'DB::Model::RaidController', "systems_id");
 
 
 1;

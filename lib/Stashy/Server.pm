@@ -28,12 +28,14 @@ sub index {
    my $cpus = $server->Cpus;
    my $dimms = $server->Dimms;
    my $eths  = $server->NetworkDevices;
+   my $raidctrl = $server->RaidControllers;
 
    $self->render(server => $server, 
                   base_board => $base_board,
                   dimms => $dimms,
                   eths  => $eths,
-                  cpus => $cpus);
+                  cpus => $cpus,
+                  raid_controller => $raidctrl);
 
 }
 

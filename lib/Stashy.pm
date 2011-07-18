@@ -37,6 +37,9 @@ use DB::Model::NetworkDeviceConfiguration;
 use DB::Model::Software;
 use DB::Model::MemoryArray;
 use DB::Model::Storage;
+use DB::Model::RaidController;
+use DB::Model::RaidShelf;
+use DB::Model::RaidVolume;
 
 
 DM4P::setup(default => "MySQL://$server/$db?username=$username&password=$password");
@@ -54,6 +57,9 @@ eval {
    DB::Model::Software->set_data_source($db);
    DB::Model::MemoryArray->set_data_source($db);
    DB::Model::Storage->set_data_source($db);
+   DB::Model::RaidController->set_data_source($db);
+   DB::Model::RaidShelf->set_data_source($db);
+   DB::Model::RaidVolume->set_data_source($db);
 };
 
 if($@) {

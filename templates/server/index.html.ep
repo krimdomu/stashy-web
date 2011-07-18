@@ -39,6 +39,27 @@
       </ul>
 
    <h2 class="h2-hdd">Harddrives</h2>
+   <% if(my $rc = $raid_controller->next) { %>
+      <h3>Raid Controller</h3>
+      <ul>
+         <% while($rc) { %>
+            <li><%= $rc->type %></li>
+
+            <ul style="margin-left: 25px;">
+               <% my $shelfs = $rc->RaidShelfs; %>
+               <% while (my $shelf = $shelfs->next) { %>
+               <% my $log_drives = $shelf->RaidVolumes; %>
+                  <% while(my $ld = $log_drives->next) { %>
+                     <li><%= $ld->dev %> (<%= $ld->raid_level %>, <%=  sprintf("%i", $ld->size / 1024 / 1024 / 1024) %> GB)</li>
+                  <% } %>
+               <% } %>
+            </ul>
+
+
+         <% $rc = $raid_controller->next; %>
+         <% } %>
+      </ul>
+      <% } else { %>
       <ul>
          <% my $storages = $server->Storages; %>
          <% while(my $st = $storages->next) { %>
@@ -60,6 +81,7 @@
          </li>
          <% } %>
       </ul>
+      <% } %>
 
    <h2 class="h2-network">Network</h2>
       <ul>

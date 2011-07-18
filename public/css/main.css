@@ -162,6 +162,13 @@ body {
    margin-bottom: 5px;
 }
 
+#server_overview h3,
+#server_details h3 {
+   font-size: 14px;
+   margin-left: 55px;
+   margin-bottom: 5px;
+}
+
 .h2-system {
    background-image: url(../images/icons/h2-system.png);
    background-repeat: no-repeat;
