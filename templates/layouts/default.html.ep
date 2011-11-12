@@ -15,6 +15,7 @@
          <ul>
             <li id="li_dashboard"><a href="/">Dashboard</a></li>
             <li id="li_server"><a href="/server">Server</a></li>
+            <li id="li_configuration"><a href="/configuration">Config Management</a></li>
             <!-- <li id="li_designer"><a href="/designer">Designer</a></li> -->
          </ul>
          <div class="clearfix"></div>

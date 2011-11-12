@@ -91,11 +91,12 @@ sub startup {
 
   $r->route('/rex/server/list')->to(controller => 'rex-server', action => 'list');
   $r->route('/rex/server/list/:name')->to(controller => 'rex-server', action => 'list');
+  $r->route('/rex/server/list/:type/:name')->to(controller => 'rex-server', action => 'list');
 
   $r->route('/rex/os/list')->to(controller => 'rex-os', action => 'list');
   $r->route('/rex/os/list/:name')->to(controller => 'rex-os', action => 'list');
 
-
+   $r->route('/configuration')->to("configuration#index", active_li => "li_configuration");
 
 }
 

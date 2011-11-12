@@ -7,11 +7,12 @@ sub list {
 
    my $self = shift;
    my $name = $self->param("name");
+   my $type = $self->param("type") || "hostname";
 
    my $server;
 
    if($name) {
-      $server = DB::Model::System->all( DB::Model::System->hostname % $name );
+      $server = DB::Model::System->all( DB::Model::System->$type % $name );
    }
    else {
       $server = DB::Model::System->all;
