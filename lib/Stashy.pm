@@ -72,7 +72,7 @@ sub startup {
   my $self = shift;
 
   # Documentation browser under "/perldoc" (this plugin requires Perl 5.10)
-  $self->plugin('pod_renderer');
+  $self->plugin('PODRenderer');
 
   # Routes
   my $r = $self->routes;
@@ -86,6 +86,16 @@ sub startup {
   $r->route('/server/get_information/:serverid')->to('server#get_information');
   $r->route('/server/software/:serverid')->to('server#software', active_li => "li_server");
   $r->route('/server/reboot/:serverid')->to('server#reboot', active_li => "li_server");
+
+  $r->route('/designer')->to('designer#index', active_li => "li_designer");
+
+  $r->route('/rex/server/list')->to(controller => 'rex-server', action => 'list');
+  $r->route('/rex/server/list/:name')->to(controller => 'rex-server', action => 'list');
+
+  $r->route('/rex/os/list')->to(controller => 'rex-os', action => 'list');
+  $r->route('/rex/os/list/:name')->to(controller => 'rex-os', action => 'list');
+
+
 
 }
 
