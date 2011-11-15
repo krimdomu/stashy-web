@@ -66,4 +66,14 @@ sub reboot {
    $self->render(server => $server);
 }
 
+# add a new system
+sub add {
+   my $self = shift;
+   my $server = $self->tx->remote_address;
+
+   Rex::Task->run("Stashy:Server:Commands:inventory", $server);
+
+   $self->render_json({retcode => 0});
+}
+
 1;

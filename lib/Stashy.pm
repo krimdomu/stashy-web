@@ -9,13 +9,19 @@ use Rex::Stashy::Server::Commands;
 
 #################################
 # DATABASE ACCESS
-my $server   = "localhost";
-my $db       = "stashy";
-my $username = "stashy";
-my $password = "stashy";
+our $server   = "localhost";
+our $db       = "stashy";
+our $username = "stashy";
+our $password = "stashy";
+
+
+#################################
+# SCM CHECKOUT PATH
+our $SCM_CHECKOUT_PATH = "./scm";
 
 # SERVER ACCESS
 user "root";
+
 # password "";
 # pass_auth;
 #
@@ -40,6 +46,7 @@ use DB::Model::Storage;
 use DB::Model::RaidController;
 use DB::Model::RaidShelf;
 use DB::Model::RaidVolume;
+use DB::Model::Scm;
 
 
 DM4P::setup(default => "MySQL://$server/$db?username=$username&password=$password");
@@ -60,6 +67,7 @@ eval {
    DB::Model::RaidController->set_data_source($db);
    DB::Model::RaidShelf->set_data_source($db);
    DB::Model::RaidVolume->set_data_source($db);
+   DB::Model::Scm->set_data_source($db);
 };
 
 if($@) {
@@ -69,34 +77,41 @@ if($@) {
 
 # This method will run once at server start
 sub startup {
-  my $self = shift;
+   my $self = shift;
 
-  # Documentation browser under "/perldoc" (this plugin requires Perl 5.10)
-  $self->plugin('PODRenderer');
+   # Documentation browser under "/perldoc" (this plugin requires Perl 5.10)
+   $self->plugin('PODRenderer');
 
-  # Routes
-  my $r = $self->routes;
+   # Routes
+   my $r = $self->routes;
 
-  # Normal route to controller
-  $r->route('/')->to('dashboard#index', active_li => "li_dashboard");
-  $r->route('/search/:servername')->to('dashboard#search', active_li => "li_dashboard");
+   # Normal route to controller
+   $r->route('/')->to('dashboard#index', active_li => "li_dashboard");
+   $r->route('/search/:servername')->to('dashboard#search', active_li => "li_dashboard");
 
-  $r->route('/server/:serverid')->to('server#index', active_li => "li_server");
+   # nur get eigentlich
+   $r->route('/server/add')->to('server#add');
 
-  $r->route('/server/get_information/:serverid')->to('server#get_information');
-  $r->route('/server/software/:serverid')->to('server#software', active_li => "li_server");
-  $r->route('/server/reboot/:serverid')->to('server#reboot', active_li => "li_server");
+   $r->route('/server/:serverid')->to('server#index', active_li => "li_server");
 
-  $r->route('/designer')->to('designer#index', active_li => "li_designer");
+   $r->route('/server/get_information/:serverid')->to('server#get_information');
+   $r->route('/server/software/:serverid')->to('server#software', active_li => "li_server");
+   $r->route('/server/reboot/:serverid')->to('server#reboot', active_li => "li_server");
 
-  $r->route('/rex/server/list')->to(controller => 'rex-server', action => 'list');
-  $r->route('/rex/server/list/:name')->to(controller => 'rex-server', action => 'list');
-  $r->route('/rex/server/list/:type/:name')->to(controller => 'rex-server', action => 'list');
+   $r->route('/designer')->to('designer#index', active_li => "li_designer");
 
-  $r->route('/rex/os/list')->to(controller => 'rex-os', action => 'list');
-  $r->route('/rex/os/list/:name')->to(controller => 'rex-os', action => 'list');
+   $r->route('/rex/orders')->to('rex#orders');
+
+   $r->route('/rex/server/list')->to(controller => 'rex-server', action => 'list');
+   $r->route('/rex/server/list/:name')->to(controller => 'rex-server', action => 'list');
+   $r->route('/rex/server/list/:type/:name')->to(controller => 'rex-server', action => 'list');
+
+   $r->route('/rex/os/list')->to(controller => 'rex-os', action => 'list');
+   $r->route('/rex/os/list/:name')->to(controller => 'rex-os', action => 'list');
 
    $r->route('/configuration')->to("configuration#index", active_li => "li_configuration");
+   $r->route('/configuration/scm')->to("configuration#scm", active_li => "li_configuration");
+   $r->route('/configuration/scm/update')->to("configuration#update_scm");
 
 }
 
