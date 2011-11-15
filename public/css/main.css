@@ -69,6 +69,7 @@ body {
    border-bottom: 2px solid #fff;
 }
 
+.right_menu,
 #server_tasks,
 #recent_servers {
    background-color: #363636;
@@ -90,6 +91,7 @@ body {
    overflow: auto;
 }
 
+.right_menu h1,
 #server_tasks h1,
 #recent_servers h1 {
 
@@ -100,6 +102,7 @@ body {
 
 }
 
+.right_menu ul li,
 #server_tasks ul li,
 #recent_servers ul li {
 
@@ -111,6 +114,7 @@ body {
 
 }
 
+.right_menu ul li.active,
 #server_tasks ul li.active,
 #recent_servers ul li.active {
 
@@ -118,6 +122,7 @@ body {
 
 }
 
+.right_menu ul li.hover,
 #server_tasks ul li.hover,
 #recent_servers ul li.hover {
 
@@ -125,6 +130,7 @@ body {
 
 }
 
+.left_content,
 #server_overview,
 #paintwall,
 #server_details {
@@ -148,6 +154,7 @@ body {
 
 }
 
+.left_content h1,
 #server_overview h1,
 #server_details h1 {
    font-size: 18px;
@@ -159,6 +166,7 @@ body {
 }
 
 
+.left_content h2,
 #server_overview h2,
 #server_details h2 {
    font-size: 16px;
@@ -166,6 +174,7 @@ body {
    margin-bottom: 5px;
 }
 
+.left_content h3,
 #server_overview h3,
 #server_details h3 {
    font-size: 14px;
@@ -205,17 +214,23 @@ body {
    padding-bottom: 7px;
 }
 
+.left_content ul,
 #server_overview ul,
 #server_details ul {
    margin-left: 56px;
    margin-bottom: 15px;
 }
 
+.left_content ul li,
 #server_overview ul li,
 #server_details ul li {
    list-style: none;
 }
 
+.left_content a,
+.left_content a:link,
+.left_content a:visited,
+.left_content a:active,
 #server_overview a,
 #server_overview a:link,
 #server_overview a:visited,
@@ -241,6 +256,7 @@ body {
 }
 
 
+.left_content,
 #server_overview,
 #paintwall {
      
@@ -261,6 +277,7 @@ body {
 
 }
 
+.right_menu,
 #server_tasks {
 
    -webkit-box-shadow: 3px 0px 7px #000;
@@ -277,6 +294,7 @@ body {
    color: #fff;
 }
 
+.right_menu h1,
 #server_tasks h1 {
 
    text-align: right;
@@ -287,12 +305,17 @@ body {
    visibility: hidden;
 }
 
+.right_menu ul.simple,
 #server_tasks ul.simple,
 #recent_servers ul.simple {
    margin-top: 10px;
 }
 
 
+.right_menu ul.simple li a,
+.right_menu ul.simple li a:link,
+.right_menu ul.simple li a:active,
+.right_menu ul.simple li a:visited,
 #server_tasks ul.simple li a,
 #server_tasks ul.simple li a:link,
 #server_tasks ul.simple li a:active,
@@ -301,10 +324,12 @@ body {
    text-decoration: none;
 }
 
+.right_menu ul.simple li a:hover,
 #server_tasks ul.simple li a:hover {
    text-decoration: underline;
 }
 
+.right_menu ul.simple li,
 #server_tasks ul.simple li,
 #recent_servers ul.simple li {
 
@@ -359,3 +384,19 @@ body {
    -moz-box-shadow: 0px 0px 17px #044;
    box-shadow: 0px 0px 17px #044;
 }
+
+
+.left_content p,
+.left_content form {
+   margin-left: 10px;
+}
+
+.left_content input.text {
+   padding: 3px;
+}
+
+.left_content table tr td {
+   padding-top: 2px;
+   padding-bottom: 2px;
+}
+

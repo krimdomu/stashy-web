@@ -1,0 +1,50 @@
+% layout 'default';
+% title 'Configure SCM Code Repository';
+
+<div class="left_content">
+   <h1>Configure Code Repository</h1>
+   %= form_for "/configuration/scm" => (method => 'post') => begin
+   <table border="0">
+      <tr>
+         <td>Name:</td>
+         <td><%= text_field 'name' => $name, class => 'text' %></td>
+      </tr>
+      <tr>
+         <td>URL:</td>
+         <td><%= text_field 'url' => $url, class => 'text', style => 'width: 400px;' %></td>
+      </tr>
+      <tr>
+         <td>&nbsp;</td>
+         <td><%= submit_button 'Save' %></td>
+      </tr>
+   </table>
+   % end
+</div>
+
+<div class="right_menu">
+   <h1>Menu</h1>
+   <ul>
+      <li href="/configuration" class="li_task">
+         by Host
+      </li>
+      <li href="/configuration/scm" class="active li_task">
+         Configure GIT Repository
+      </li>
+   </ul>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+   $(".li_task").each(function(idx, itm) {
+            $(itm).bind("click", function() {
+                  location.href=itm.getAttribute("href");
+               });
+            $(itm).bind("mouseover", function() {
+                 $(itm).addClass("hover"); 
+               });
+            $(itm).bind("mouseout", function() {
+                 $(itm).removeClass("hover"); 
+               });
+         });  
+</script>
+
+
