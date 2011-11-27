@@ -4,30 +4,6 @@ use Mojo::Base 'Mojolicious';
 use Rex;
 use Rex::Config;
 use Rex::Commands;
-use Rex::Stashy::Server::Commands;
-
-
-#################################
-# DATABASE ACCESS
-our $server   = "localhost";
-our $db       = "stashy";
-our $username = "stashy";
-our $password = "stashy";
-
-
-#################################
-# SCM CHECKOUT PATH
-our $SCM_CHECKOUT_PATH = "./scm";
-
-# SERVER ACCESS
-user "root";
-
-# password "";
-# pass_auth;
-#
-# public_key "/path/to/pub.key";
-# private_key "/path/to/private.key";
-#################################
 
 
 use DM4P;
@@ -49,38 +25,14 @@ use DB::Model::RaidVolume;
 use DB::Model::Scm;
 
 
-DM4P::setup(default => "MySQL://$server/$db?username=$username&password=$password");
-
-eval {
-   my $db = DM4P::get_connection("default");
-   $db->connect;
-
-   DB::Model::System->set_data_source($db);
-   DB::Model::Baseboard->set_data_source($db);
-   DB::Model::Cpu->set_data_source($db);
-   DB::Model::Dimm->set_data_source($db);
-   DB::Model::NetworkDevice->set_data_source($db);
-   DB::Model::NetworkDeviceConfiguration->set_data_source($db);
-   DB::Model::Software->set_data_source($db);
-   DB::Model::MemoryArray->set_data_source($db);
-   DB::Model::Storage->set_data_source($db);
-   DB::Model::RaidController->set_data_source($db);
-   DB::Model::RaidShelf->set_data_source($db);
-   DB::Model::RaidVolume->set_data_source($db);
-   DB::Model::Scm->set_data_source($db);
-};
-
-if($@) {
-   die("Can't connect to database.");
-}
-
 
 # This method will run once at server start
 sub startup {
    my $self = shift;
 
    # Documentation browser under "/perldoc" (this plugin requires Perl 5.10)
-   $self->plugin('PODRenderer');
+   $self->plugin("PODRenderer");
+   my $config = $self->plugin("Config");
 
    # Routes
    my $r = $self->routes;
@@ -90,7 +42,7 @@ sub startup {
    $r->route('/search/:servername')->to('dashboard#search', active_li => "li_dashboard");
 
    # nur get eigentlich
-   $r->route('/server/add')->to('server#add');
+   $r->route('/server/add')->via('GET')->to('server#add');
 
    $r->route('/server/:serverid')->to('server#index', active_li => "li_server");
 
@@ -112,6 +64,53 @@ sub startup {
    $r->route('/configuration')->to("configuration#index", active_li => "li_configuration");
    $r->route('/configuration/scm')->to("configuration#scm", active_li => "li_configuration");
    $r->route('/configuration/scm/update')->to("configuration#update_scm");
+
+   # initialize database
+   DM4P::setup(default => "MySQL://" 
+                        . $config->{"db"}->{"server"}
+                        . "/"
+                        . $config->{"db"}->{"schema"}
+                        . "?username="
+                        . $config->{"db"}->{"user"}
+                        . "&password="
+                        . $config->{"db"}->{"password"});
+
+   eval {
+      my $db = DM4P::get_connection("default");
+      $db->connect;
+
+      DB::Model::System->set_data_source($db);
+      DB::Model::Baseboard->set_data_source($db);
+      DB::Model::Cpu->set_data_source($db);
+      DB::Model::Dimm->set_data_source($db);
+      DB::Model::NetworkDevice->set_data_source($db);
+      DB::Model::NetworkDeviceConfiguration->set_data_source($db);
+      DB::Model::Software->set_data_source($db);
+      DB::Model::MemoryArray->set_data_source($db);
+      DB::Model::Storage->set_data_source($db);
+      DB::Model::RaidController->set_data_source($db);
+      DB::Model::RaidShelf->set_data_source($db);
+      DB::Model::RaidVolume->set_data_source($db);
+      DB::Model::Scm->set_data_source($db);
+   };
+
+   if($@) {
+      die("Can't connect to database.");
+   }
+
+   # initlialize rex
+   user $config->{"rex"}->{"user"};
+   require Rex::Stashy::Server::Commands;
+
+   require Rex::Commands::DB;
+   Rex::Commands::DB->import({
+                        dsn => "DBI:mysql:database="
+                                          . $config->{"db"}->{"schema"}
+                                          . ";host="
+                                          . $config->{"db"}->{"server"},
+                        user => $config->{"db"}->{"user"},
+                        password => $config->{"db"}->{"password"},
+                     });
 
 }
 

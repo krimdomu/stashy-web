@@ -9,11 +9,7 @@ package Rex::Stashy::Server::Commands;
 use strict;
 use warnings;
 
-use Rex::Commands::DB {
-                        dsn => "DBI:mysql:database=stashy;host=localhost",
-                        user => "stashy",
-                        password => "stashy",
-                     };
+use Rex::Commands::DB;
 
 use Rex::Commands::Inventory;
 use Rex::Commands::Gather;
@@ -34,8 +30,6 @@ use Rex::Commands::Sysctl;
 use Rex::Commands::Tail;
 use Rex::Commands::Process;
 
-
-user "root";
 
 task "reboot", sub {
 
