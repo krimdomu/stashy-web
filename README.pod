@@ -20,26 +20,28 @@ Clone this repository and edit the file I<lib/Stashy.pm>
 
  git clone git://github.com/krimdomu/stashy-web.git
 
-Edit the file I<lib/Stashy.pm>
+Edit the file I<stashy.conf>
 
- #################################
- # DATABASE ACCESS
- my $server   = "localhost";
- my $db       = "stashy";
- my $username = "stashy";
- my $password = "stashy";
-    
- # SERVER ACCESS
- user "root";
- # password "";
- # pass_auth;
- #
- # public_key "/path/to/pub.key";
- # private_key "/path/to/private.key";
- #################################
+ {
+   db => {
+      server   => "localhost",
+      schema   => "stashy",
+      user     => "stashy",
+      password => "stashy",
+   },
 
+   rex => {
+      user     => "root",
+      # private_key => "",
+      # public_key  => "",
+   },
+
+   scm => {
+      checkout_to => "./scm",
+   },
+ };
 
 Start the Test-Server:
 
- morbo script/stashy
+ script/stashy daemon
 
