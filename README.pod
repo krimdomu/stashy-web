@@ -10,8 +10,6 @@ You need (R)?ex, Mojolicious, DM4P and a MySQL Database.
 
 Install (R)?ex from  here L<http://rexify.org/get/>. 
 
-Install Stashy-cli from here L<https://github.com/krimdomu/stashy-cli>.
-
 Install Mojolicious via CPAN (see here: L<http://mojolicio.us>).
 
 Install DM4P and DM4P/MySQL from L<https://github.com/krimdomu/dm4p> and L<https://github.com/krimdomu/dm4p-adapter-mysql>.
@@ -19,6 +17,8 @@ Install DM4P and DM4P/MySQL from L<https://github.com/krimdomu/dm4p> and L<https
 Clone this repository and edit the file I<lib/Stashy.pm>
 
  git clone git://github.com/krimdomu/stashy-web.git
+
+Create a mysql database. And create the needed tables I<doc/stashy.sql>.
 
 Edit the file I<stashy.conf>
 
